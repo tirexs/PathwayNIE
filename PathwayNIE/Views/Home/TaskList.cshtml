@@ -1,0 +1,20 @@
+﻿@using PathwayNIE.Models.Entities;
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+	@foreach (MakedTask item in ViewBag.Tasks)
+	{
+		<h3>@item.Name</h3>
+		<label style="font-size:16px">
+			от: @item.UserLogin.UserName
+		</label>
+		<br />
+		<label>
+			@item.Description
+		</label>
+		<br />
+		<br />
+	}
+</body>

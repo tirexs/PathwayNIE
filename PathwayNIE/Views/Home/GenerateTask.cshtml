@@ -1,0 +1,45 @@
+﻿<body>
+<div class="block1">
+	@using (Html.AjaxBeginForm("GenerateTask", new AjaxOptions
+	{
+		HttpMethod = "post",
+	}))
+	{
+		<label>
+			Выберите уровень сложности
+			<select name="select1">
+				@foreach (var item in ViewBag.DifficultyLevels)
+				{
+					<option>@item</option>
+				}
+			</select>
+		</label>
+		<br />
+		<label>
+			Выберите категорию
+			<select name="select2">
+				@foreach (var item in ViewBag.Category)
+				{
+					<option>@item</option>
+				}
+			</select>
+		</label>
+		<br />
+		<br />
+		<textarea placeholder="Дополнительные условия" class="mMessage" style="border: 2px solid #2196f3" name="message"></textarea>
+
+		<input type="submit" id="sendBtn" value="Отправить">
+
+	}
+	<br />
+	<br />
+</div>
+	<form action="/Home/SaveTaskToDb" method="post">
+		<input type="hidden" value="@ViewBag.GeneratedTask" name="description" />
+		<input type="hidden" value="@ViewBag.GeneratedTaskName" name="GeneratedTaskName" />
+		<h3>Полученная задача:</h3>
+			<br />
+		<p name="description" id="messageGPT">@ViewBag.GeneratedTask</p>
+		<input type="submit" value="Сохранить" />
+	</form>
+</body>
